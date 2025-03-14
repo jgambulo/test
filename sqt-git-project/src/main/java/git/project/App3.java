@@ -257,7 +257,7 @@ public class App3 {
             .statusCode(404)
             .body("error", equalTo("Not Found"));
     }
-  /* 
+  
     //Test Get Books Pagination
     @Test
     @Order(12)
@@ -272,5 +272,5 @@ public class App3 {
             .statusCode(200);
             //.body("size()", equalTo(24));
     }
-*/
+
 }
