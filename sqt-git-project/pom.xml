@@ -79,7 +79,9 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.0.0-M5</version> <!-- Make sure this is the latest version -->
         <configuration>
-          <useJUnitPlatform>true</useJUnitPlatform>  <!-- Make sure this is present -->
+          <dependenciesToScan>
+            <dependency>org.junit.jupiter</dependency>
+          </dependenciesToScan>
         </configuration>
       </plugin>
     </plugins>
