@@ -27,7 +27,7 @@ public class App3 {
 	 Response response;
 	 ValidatableResponse validatableResponse;
 
-    @BeforeAll
+    @Test
     public void setup() {
     	 // Base URL of the API
         RestAssured.baseURI = "http://localhost:8085/books";
@@ -62,7 +62,6 @@ public class App3 {
     
     //Part 1: Test the GET /books endpoint
     @Test
-   	@Order(1)
     public void testGetBooks() {
         Response response = given()
                 .auth().basic("user", "password")
@@ -88,7 +87,6 @@ public class App3 {
    
     //Part 2: Test the POST /books endpoint
     @Test
-    @Order(2)
     public void testCreateBook() {
     	String requestBody = "{\n" +
                 "    \"name\": \"A to the Bodhisattva Way of Life\",\n" +
