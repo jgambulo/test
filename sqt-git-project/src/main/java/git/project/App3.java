@@ -113,7 +113,7 @@ public class App3 {
     @Test
     @Order(3)
     public void testGetBookById() {
-    	int bookId = 5;
+    	int bookId = 4;
 
         Response response = given().auth().basic("user", "password")
                             .contentType("application/json")
