@@ -28,7 +28,7 @@ public class App3 {
 	 ValidatableResponse validatableResponse;
 
     @BeforeAll
-    public static void setup() {
+    public void setup() {
     	 // Base URL of the API
         RestAssured.baseURI = "http://localhost:8085/books";
         
