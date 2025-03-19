@@ -19,7 +19,7 @@ import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+
 public class App3 {
 
 	//private static int bookId;
