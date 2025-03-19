@@ -31,21 +31,23 @@
 		<version>2.2</version>
 		<scope>test</scope>
 	</dependency>
-	 <!-- JUnit 5 dependency for API -->
+	  <!-- JUnit Jupiter API for testing -->
     <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-api</artifactId>
-        <version>5.8.2</version> <!-- Make sure to use the correct version -->
+        <version>5.8.2</version> <!-- Use the latest stable version -->
         <scope>test</scope>
     </dependency>
-
-    <!-- JUnit 5 dependency for Engine -->
+    
+    <!-- JUnit Jupiter Engine to run tests -->
     <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-engine</artifactId>
-        <version>5.8.2</version> <!-- Make sure to use the correct version -->
+        <version>5.8.2</version>
         <scope>test</scope>
     </dependency>
+    
+    <!-- Optional: JUnit Jupiter Params for parameterized tests -->
     <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-params</artifactId>
