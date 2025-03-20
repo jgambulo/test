@@ -19,7 +19,7 @@ import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+//@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class App3 {
 
 	//private static int bookId;
@@ -27,7 +27,7 @@ public class App3 {
 	 Response response;
 	 ValidatableResponse validatableResponse;
 
-    @BeforeAll
+    //@BeforeAll
     public static void setup() {
     	 // Base URL of the API
         RestAssured.baseURI = "http://localhost:8085/books";
