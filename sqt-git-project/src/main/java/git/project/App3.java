@@ -32,7 +32,7 @@ public class App3 {
     	 // Base URL of the API
         RestAssured.baseURI = "http://localhost:8085/books";
         
-        String username = "user"; 
+        String username = "admin"; 
         String password = "password";
         
      // Create the request specification
