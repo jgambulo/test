@@ -4,13 +4,18 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.*;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 
-
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class App3 {
 
 	
@@ -18,7 +23,7 @@ public class App3 {
 	 Response response;
 	 ValidatableResponse validatableResponse;
 
-    //@BeforeAll
+    @BeforeAll
     public static void setup() {
     	 // Base URL of the API
         RestAssured.baseURI = "http://localhost:8085/books";
@@ -53,7 +58,7 @@ public class App3 {
     
     //Part 1: Test the GET /books endpoint
     @Test
-   	//@Order(1)
+   	@Order(1)
     public void testGetBooks() {
         Response response = given()
                 .auth().basic("user", "password")
@@ -70,7 +75,7 @@ public class App3 {
    
     //Part 2: Test the POST /books endpoint
     @Test
-    //@Order(2)
+    @Order(2)
     public void testCreateBook() {
     	String requestBody = "{\n" +
                 "    \"name\": \"A to the Bodhisattva Way of Life\",\n" +
@@ -93,7 +98,7 @@ public class App3 {
 
     //Part 3: Test the GET /books/{id} endpoint
     @Test
-    //@Order(3)
+    @Order(3)
     public void testGetBookById() {
     	int bookId = 4;
 
@@ -112,7 +117,7 @@ public class App3 {
 
     //Part 4: Test the PUT /books/{id} endpoint
     @Test
-   	//@Order(4)
+   	@Order(4)
     public void testUpdateBook() {
     	int bookId = 1;
 
@@ -155,20 +160,20 @@ public class App3 {
     
    	//Test Get Book with Invalid ID
     @Test
-   	//@Order(6)
+   	@Order(6)
     public void testGetBookWithInvalidId() {
     	given()
     	.auth().basic("admin", "password")
         .contentType("application/json")
         .when().get("/books/999")
-        .then().statusCode(403);
-        //.body("error", equalTo("Not Found"));
+        .then().statusCode(404)
+        .body("error", equalTo("Not Found"));
 
     }
     
     //Test Create Book with Missing Fields
     @Test
-    //@Order(7)
+    @Order(7)
     public void testCreateBookWithMissingFields() {
         String requestBody = "{\"title\": \"\", \"author\": \"\", \"isbn\": \"\"}";
         
@@ -186,7 +191,7 @@ public class App3 {
 
     //Test Create Book with Invalid Data
     @Test
-   // @Order(8)
+   @Order(8)
     public void testCreateBookWithInvalidData() {
         String requestBody = "{\"title\": \"@BadTitle\", \"author\": \"John123\", \"isbn\": \"invalidISBN\"}";
 
@@ -201,19 +206,19 @@ public class App3 {
   
     //Test Unauthorized Access
     @Test
-   // @Order(9)
+    @Order(9)
     public void testUnauthorizedAccess() {
         given()
             .when().get("/books")
             .then()
-            .statusCode(403);
-            //.body("error", equalTo("Unauthorized"));
+            .statusCode(401)
+            .body("error", equalTo("Unauthorized"));
     }
 
     
     //Test Update Book with Invalid ID
     @Test
-   // @Order(10)
+    @Order(10)
     public void testUpdateBookWithInvalidId() {
         String updatedRequestBody = "{\"title\": \"Updated Book\", \"author\": \"Jane Doe\", \"isbn\": \"654321\"}";
 
@@ -222,25 +227,25 @@ public class App3 {
 	        .contentType("application/json")
             .body(updatedRequestBody)
             .when().put("/books/999") // Non-existent book ID
-            .then().statusCode(403);
-            //.body("error", equalTo("Not Found"));
+            .then().statusCode(404)
+            .body("error", equalTo("Not Found"));
     }
     
     //Test Delete Book with Invalid ID
     @Test
-    //@Order(11)
+    @Order(11)
     public void testDeleteBookWithInvalidId() {
         given()
 	        .auth().basic("admin", "password") 
 	        .contentType("application/json")
             .when().delete("/books/999") // Assuming this ID does not exist
-            .then().statusCode(403);
-            //.body("error", equalTo("Not Found"));
+            .then().statusCode(404)
+            .body("error", equalTo("Not Found"));
     }
   
     //Test Get Books Pagination
     @Test
-    //@Order(12)
+    @Order(12)
     public void testGetBooksWithPagination() {
         given()
 	        .auth().basic("admin", "password") 
@@ -254,4 +259,3 @@ public class App3 {
     }
 
 }
-
